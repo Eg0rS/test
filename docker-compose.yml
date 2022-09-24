@@ -1,5 +1,15 @@
 version: "3"
 services:
+  database:
+    restart: always
+    image: postgis/postgis:13-master
+    volumes:
+      - pgd:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE}
+
   web:
     command: dotnet Test.dll --environment=prod
     environment:
@@ -16,6 +26,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+volumes:
+  pgd:
 
 networks:
   default:
