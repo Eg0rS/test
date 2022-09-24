@@ -1,0 +1,14 @@
+version: "3"
+services:
+  web:
+    command: dotnet Test.dll --environment=prod
+    environment:
+      ASPNETCORE_ENVIRONMENT: prod
+    restart: always
+    build:
+      context: .
+      dockerfile: Test/Dockerfile
+
+networks:
+  default:
+    name: test_net
