@@ -8,6 +8,14 @@ services:
     build:
       context: .
       dockerfile: Test/Dockerfile
+  
+  nginx:
+    ports:
+    - '8080:80'
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
 
 networks:
   default:
